@@ -37,7 +37,23 @@ module.exports = function(seqelize) {
   });
 
   router.post('/', function(req, res) {
-    res.send('feature not compelte yet');
+    var x = parseInt(req.query.x);
+    var y = parseInt(req.query.y);
+
+    // if the number is outside the grid, don't do it
+    if (x < 0 || x > 9 || y < 0 || y > 9) {
+      res.status(400).send('outside of grid');
+      return;
+    }
+
+    console.log(req.query);
+
+    if (!(/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(req.query.color))) {
+      res.status(400).send('bad color string');
+      return;
+    }
+
+    res.send('feature not finished yet');
   });
 
   router.get('/about', function (req, res) {
