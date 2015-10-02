@@ -3,7 +3,59 @@
   <head>
     <title>Super Colour Click</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
+      body {
+        font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+        font-size: 14px;
+
+        color: #EFEFEF;
+
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      p {
+        width: 90%;
+        margin: 0 auto;
+      }
+
+      .blockSection {
+        height: 100%;
+        width: 100%;
+
+        padding-top: 1em;
+        padding-bottom: 1em;
+      }
+
+      #headerSection {
+        background-color: #2B3A42;
+
+        text-align: center;
+      }
+
+      #colourSection {
+        background-color: #BDD4DE;
+      }
+
+      #gridSection {
+        background-color: #3F5765;
+      }
+
+      #bottomSection {
+        background-color: #FF530D;
+
+        text-align: center;
+      }
+
+      table {
+        margin: 0 auto;
+      }
       tr {
         height: 25px;
       }
@@ -11,9 +63,23 @@
         width: 25px;
       }
 
+      .slider {
+
+        margin: 0 auto;
+        margin-top: 0.5em;
+        margin-bottom: 0.25em;
+
+        width: 80%;
+      }
+
       #swatch {
         width: 80%;
-        min-height: 25px;
+        min-height: 30px;
+
+        border-radius: 15px;
+
+        margin: 0 auto;
+        padding-bottom: 0.25em;
       }
 
       /* These attributes were copied from https://jqueryui.com/slider/#colorpicker */
@@ -106,10 +172,18 @@
 
   </head>
   <body>
-    <h1>Super Colour Click</h1>
-    <div class="slider" id="redSlider"></div>
-    <div class="slider" id="greenSlider"></div>
-    <div class="slider" id="blueSlider"></div>
+    <div id="headerSection" class="blockSection">
+      <h1>Super Colour Click</h1>
+      <p>Select a colour, and click on a square to change it. Be warned, other people may change squares too!</p>
+    </div>
 
-    <div id="swatch"></div>
-    <table>
+    <div id="colourSection" class="blockSection">
+
+      <div id="swatch"></div>
+      <div class="slider" id="redSlider"></div>
+      <div class="slider" id="greenSlider"></div>
+      <div class="slider" id="blueSlider"></div>
+    </div>
+
+    <div id="gridSection" class="blockSection">
+      <table>
