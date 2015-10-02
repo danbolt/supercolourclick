@@ -19,7 +19,7 @@ var generateGridView = function(gridData) {
       data = data.concat('<tr>');
     }
 
-    data = data.concat('<td bgcolor="' + gridData.grid[i] + '" class="square" id="' + (i % 10) + '-' + ~~(i / 10) + '">' + (i % 10) + ',' + ~~(i / 10) + '</td>');
+    data = data.concat('<td bgcolor="' + gridData.grid[i] + '" class="square" id="' + (i % 10) + '-' + ~~(i / 10) + '"></td>');
 
     if (i % 10 === 9) {
       data = data.concat('</tr>');
@@ -45,7 +45,7 @@ app.get('/', function (req, res) {
 
       grid.getGridJSONData(function(gridData) {
         var result = dataA.concat(generateGridView(gridData), dataB);
-        res.send(result.toString());
+        res.send(result.toString().replace('revisionNumber = undefined', 'revisionNumber = ' + gridData.revisionNumber));
       });
     });
   });

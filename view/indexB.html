@@ -1,3 +1,17 @@
     </table>
+    <script>
+    var revisionNumber = undefined;
+
+    $('.square').click(function(eventObject) {
+      if (revisionNumber === undefined) {
+        return;
+      }
+
+      var x = parseInt(eventObject.target.id[0]);
+      var y = parseInt(eventObject.target.id[2]);
+
+      $.post('grid?x=' + x + '&y=' + y + '&color=%23FF00FF&revision=' + revisionNumber);
+    });
+    </script>
   </body>
 </html>
