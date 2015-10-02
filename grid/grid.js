@@ -90,5 +90,11 @@ module.exports = function(seqelize) {
     res.send('This is responsible for the grid.');
   });
 
+  router.getGridJSONData = function(callback) {
+    grid.findOne({where: {name: 'main-game'}}).then(function (gridData) {
+      callback({ revisionNumber: gridData.revisionNumber, grid: gridData.grid });
+    });
+  };
+
   return router;
 };

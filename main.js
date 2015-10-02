@@ -11,7 +11,7 @@ var app = express();
 
 var grid = require('./grid/grid.js')(sequelize);
 
-var generateGridView = function() {
+var generateGridView = function(gridData) {
   var data = new Buffer('');
 
   for (var i = 0; i < 100; i++) {
@@ -19,7 +19,7 @@ var generateGridView = function() {
       data = data.concat('<tr>');
     }
 
-    data = data.concat('<td class="square" id="' + (i % 10) + '-' + ~~(i / 10) + '">' + (i % 10) + ',' + ~~(i / 10) + '</td>');
+    data = data.concat('<td bgcolor="' + gridData.grid[i] + '" class="square" id="' + (i % 10) + '-' + ~~(i / 10) + '">' + (i % 10) + ',' + ~~(i / 10) + '</td>');
 
     if (i % 10 === 9) {
       data = data.concat('</tr>');
@@ -43,9 +43,10 @@ app.get('/', function (req, res) {
         res.send('DataB error: ' + err);
       }
 
-      var result = dataA.concat(generateGridView(), dataB);
-
-      res.send(result.toString());
+      grid.getGridJSONData(function(gridData) {
+        var result = dataA.concat(generateGridView(gridData), dataB);
+        res.send(result.toString());
+      });
     });
   });
 });
