@@ -13,6 +13,20 @@
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:8080');
+
+        socket.on('revision', function (data) {
+          if (data.revisionNumber > revisionNumber) {
+            for (var i = 0; i < 100; i++) {
+              $('#' + (i % 10) + '-' + ~~(i / 10)).attr('bgcolor', data.data[i]);
+            }
+
+            revisionNumber = data.revisionNumber;
+          }
+        });
+    </script>
   </head>
   <body>
     <h1>Super Colour Click</h1>

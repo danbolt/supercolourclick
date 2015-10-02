@@ -8,8 +8,20 @@ var sequelize = new Sequelize('postgres://daniel:daniel@localhost:5432/daniel');
 
 var express = require('express');
 var app = express();
+var httpServer = require('http').Server(app);
 
-var grid = require('./grid/grid.js')(sequelize);
+var grid = require('./grid/grid.js')(sequelize, function (gridData) {
+  io.emit('revision', gridData);
+});
+
+var io = require('socket.io')(httpServer);
+
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
 
 var generateGridView = function(gridData) {
   var data = new Buffer('');
@@ -51,6 +63,5 @@ app.get('/', function (req, res) {
   });
 });
 
-var server = app.listen(8080, function() {
-  console.log('Example app listening at http://%s:%s', server.address().address, server.address().port);
-});
+
+httpServer.listen(8080);

@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var express = require('express'); 
 
-module.exports = function(seqelize) {
+module.exports = function(seqelize, callbackOnUpdate) {
   var router = express.Router();
 
   var grid = seqelize.define('grid', {
@@ -79,6 +79,7 @@ module.exports = function(seqelize) {
       grid.grid[y * 10 + x] = req.query.color;
 
       grid.save({fields: ['revisionNumber', 'grid']}).then(function() {
+        callbackOnUpdate({ revisionNumber: grid.revisionNumber, data: grid.grid });
         res.send('saved');
       }).catch(function () {
         res.status(500).send('error saving update');
