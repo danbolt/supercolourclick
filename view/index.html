@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
+      html {
+        min-height: 100%;
+      }
+
       body {
         font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
         font-size: 14px;
@@ -14,10 +18,14 @@
 
         margin: 0 !important;
         padding: 0 !important;
+
+        min-height: 100%;
+        bottom: 0;
       }
 
       h1 {
         margin: 0;
+        font-size: 3em;
       }
 
       p {
@@ -82,6 +90,44 @@
         padding-bottom: 0.25em;
       }
 
+      @media (min-width: 667px) {
+        h1 {
+          padding-top: 1em;
+          padding-bottom: 1em;
+        }
+
+        #headerSection {
+          padding-top: 1em;
+        }
+
+        .blockSection {
+          padding-top: 3em;
+          padding-bottom: 3em;
+        }
+
+        tr {
+          height: 50px;
+        }
+        td {
+          width: 50px;
+        }
+      }
+
+      @media (min-width: 800px) {
+        h1 {
+          font-size: 3.5em;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          font-size: 12px;
+        }
+        h1 {
+          font-size: 2em;
+        }
+      }
+
       /* These attributes were copied from https://jqueryui.com/slider/#colorpicker */
       #redSlider .ui-slider-range { background: #ef2929; }
       #redSlider .ui-slider-handle { border-color: #ef2929; }
@@ -97,17 +143,16 @@
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script src="http://192.168.1.130:8080/socket.io/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://localhost:8080');
+        var socket = io.connect('http://192.168.1.130:8080');
 
         socket.on('revision', function (data) {
           if (data.revisionNumber > revisionNumber) {
             for (var i = 0; i < 100; i++) {
               $('#' + (i % 10) + '-' + ~~(i / 10)).attr('bgcolor', data.data[i]);
+              revisionNumber = data.revisionNumber;
             }
-
-            revisionNumber = data.revisionNumber;
           }
         });
     </script>
