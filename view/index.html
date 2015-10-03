@@ -5,7 +5,37 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+
     <style>
+      .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+      }
+
+      /*
+      Sticky Footer by Ryan Fait
+      http://ryanfait.com/
+      */
+      * {
+        margin: 0;
+      }
+      html, body {
+        height: 100%;
+      }
+      .wrapper {
+        min-height: 100%;
+        margin: 0 auto -32px; /* the bottom margin is the negative value of the footer's height */
+      }
+      footer, .push {
+        height: 32px; /* '.push' must be the same height as 'footer' */
+      }
+
       html {
         min-height: 100%;
       }
@@ -26,6 +56,8 @@
       h1 {
         margin: 0;
         font-size: 3em;
+        font-family: 'Righteous', cursive;
+        text-transform: uppercase;
       }
 
       p {
@@ -44,31 +76,68 @@
       #headerSection {
         background-color: #2B3A42;
 
+        padding-top: 2.25em;
+        padding-bottom: 2.25em;
+
         text-align: center;
       }
 
       #colourSection {
         background-color: #BDD4DE;
+
+        padding-top: 2.25em;
+        padding-bottom: 2.25em;
       }
 
       #gridSection {
         background-color: #3F5765;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding-top: 3em;
+        padding-bottom: 3em;
       }
 
       #bottomSection {
         background-color: #FF530D;
 
         text-align: center;
+
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #bottomSection a {
+        color: #EFEFEF;
+        text-decoration: none;  
+      }
+      #bottomSection a:visited {
+        color: #EFEFEF;
+        text-decoration: none;  
+      }
+      #bottomSection a:active {
+        color: #EFEFEF;
+        text-decoration: none;  
+      }
+      #bottomSection a:hover {
+        color: #BDD4DE;
+        text-decoration: none;  
       }
 
       table {
         margin: 0 auto;
+        border-collapse: collapse;
+        border: 2px solid black;
       }
       tr {
         height: 25px;
       }
       td {
         width: 25px;
+        padding: 0px;
       }
 
       .slider {
@@ -103,6 +172,34 @@
         .blockSection {
           padding-top: 3em;
           padding-bottom: 3em;
+        }
+
+        #swatch {
+          width: 20%;
+          height: 70px;
+          padding-bottom: 0px;
+          vertical-align: middle;
+          float: right;
+        }
+
+        #sliders {
+          float: left;
+          width: 80%;
+        }
+
+        #slider {
+          width: 100%;
+        }
+
+        #colorSelector {
+          display: inline-block;
+          width: 80%;
+        }
+
+        #colourSection {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         tr {
@@ -217,18 +314,24 @@
 
   </head>
   <body>
-    <div id="headerSection" class="blockSection">
-      <h1>Super Colour Click</h1>
-      <p>Select a colour, and click on a square to change it. Be warned, other people may change squares too!</p>
-    </div>
+    <div class="wrapper">
+      <div id="headerSection" class="blockSection">
+        <h1 class="noselect">Super Colour Click</h1>
+        <p>Select a colour, and click on a square to change it. Be warned, other people may change squares too!</p>
+      </div>
 
-    <div id="colourSection" class="blockSection">
+      <div id="colourSection" class="blockSection">
 
-      <div id="swatch"></div>
-      <div class="slider" id="redSlider"></div>
-      <div class="slider" id="greenSlider"></div>
-      <div class="slider" id="blueSlider"></div>
-    </div>
+        <div id="colorSelector">
+          <div id="swatch"></div>
+          <div id="sliders">
+            <div class="slider" id="redSlider"></div>
+            <div class="slider" id="greenSlider"></div>
+            <div class="slider" id="blueSlider"></div>
+          </div>
+        </div>
+      </div>
 
-    <div id="gridSection" class="blockSection">
-      <table>
+      <div id="gridSection" class="blockSection">
+        <div id="tableWrapper">
+          <table>
