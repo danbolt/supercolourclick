@@ -51,6 +51,10 @@ var generateGridView = function(gridData) {
 
 app.use('/grid', grid);
 
+app.get('/thumbnail.png', function (req, res) {
+  res.sendFile(__dirname + '/thumbnail.png');
+});
+
 app.get('/', function (req, res) {
   var a = fs.readFile('./view/index.html', function(err, dataA)
   {
