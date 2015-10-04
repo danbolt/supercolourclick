@@ -14,12 +14,20 @@ var grid = require('./grid/grid.js')(sequelize, function (gridData) {
   io.emit('revision', gridData);
 });
 
+var numberOfPeopleOnline = 0;
+var updateNumberOfPeopleOnline = function() {
+  io.emit('population', {count: numberOfPeopleOnline})
+};
+
 var io = require('socket.io')(httpServer);
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  numberOfPeopleOnline++;
+  updateNumberOfPeopleOnline();
+
+  socket.on('disconnect', function () {
+    numberOfPeopleOnline--;
+    updateNumberOfPeopleOnline();
   });
 });
 

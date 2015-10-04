@@ -252,6 +252,16 @@
             }
           }
         });
+
+        socket.on('population', function (data) {
+          if (data.count - 1 > 1) {
+            $('#otherPeopleCountText').text(data.count - 1 + ' other people may change the squares too!');
+          } else if (data.count - 1 > 0) {
+            $('#otherPeopleCountText').text(data.count - 1 + ' other person might change your squares!');
+          } else {
+            $('#otherPeopleCountText').text('someone else might change your squares later.');
+          }
+        });
     </script>
 
     <script>
@@ -317,7 +327,7 @@
     <div class="wrapper">
       <div id="headerSection" class="blockSection">
         <h1 class="noselect">Super Colour Click</h1>
-        <p>Select a colour, and click on a square to change it. Be warned, other people may change squares too!</p>
+        <p>Select a colour, and click on a square to change it. Be warned, <span id="otherPeopleCountText">someone else might change your squares later.</span></p>
       </div>
 
       <div id="colourSection" class="blockSection">
