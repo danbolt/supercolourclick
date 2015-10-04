@@ -4,7 +4,7 @@ var underscore = require('underscore');
 var buffertools = require('buffertools').extend(); //extend Node's buffer class for additional functionality
 
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('postgres://daniel:daniel@localhost:5432/daniel');
+var sequelize = new Sequelize(process.env.DATABASE_URL);
 
 var express = require('express');
 var app = express();
@@ -72,4 +72,4 @@ app.get('/', function (req, res) {
 });
 
 
-httpServer.listen(8080);
+httpServer.listen(process.env.PORT || 8080);
