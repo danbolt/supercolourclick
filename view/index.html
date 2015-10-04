@@ -240,9 +240,9 @@
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-    <script src="http://192.168.1.130:8080/socket.io/socket.io.js"></script>
+    <script src="http://supercolourclick.xyz/socket.io/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://192.168.1.130:8080');
+        var socket = io.connect('http://supercolourclick.xyz/');
 
         socket.on('revision', function (data) {
           if (data.revisionNumber > revisionNumber) {
